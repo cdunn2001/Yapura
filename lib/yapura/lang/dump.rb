@@ -1,6 +1,6 @@
 module Yapura
   module Lang
-    module Ruby
+    module Dump
       class Generator
         attr_accessor :level
 
@@ -25,9 +25,12 @@ module Yapura
         end
 
         def structure(node)
-          puts "#{indent}class #{node.name.capitalize}"
+          puts "#{indent}class #{node.name.capitalize} #{node.inspect}"
           self.level += 1
           node.children.each do |node|
+            dispatch node
+          end
+          node.fields.each do |node|
             dispatch node
           end
           self.level -= 1
@@ -44,12 +47,9 @@ module Yapura
           puts "#{indent}end"
         end
 
-        def datatype(node)
-          puts "#{indent}attr_accessor :#{node.name}"
-        end
-
-        def list(node)
-          puts "#{indent}attr_accessor :#{node.name}"
+        def field(node)
+          puts "#{indent}attr_accessor :field_#{node.name}"
+          puts "# #{indent} #{node.inspect}"
         end
 
         def indent
