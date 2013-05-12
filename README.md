@@ -10,11 +10,15 @@ Install it with:
 
 ## Usage
 
-To test it out, run 
-    
-    $ yapura examples/simple_definition.rb ruby 
+To test it out, run
+
+    $ yapura examples/simple_definition.rb ruby
 
 to see ruby code dumped to your console.  Pipe it to a file to save it.
+
+## Testing without installation
+
+    $ make simple
 
 ## Contributing
 
